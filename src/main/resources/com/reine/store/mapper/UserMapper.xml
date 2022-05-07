@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.reine.store.mapper.UserMapper">
+
+    <!--    useGeneratedKeys开启字段自增，keyProperty自增的字段-->
+    <insert id="insert" parameterType="com.reine.store.entity.User" useGeneratedKeys="true" keyProperty="uid">
+        insert into store.t_user(username, password, salt, phone, email, gender, avatar, is_deleted, created_user,
+                                 created_time, modified_user, modified_time)
+        values (#{username}, #{password}, #{salt}, #{phone},
+                #{email}, #{gender}, #{avatar}, #{isDeleted},
+                #{createdUser}, #{createdTime},
+                #{modifiedUser}, #{modifiedTime})
+    </insert>
+    <select id="findByUsername" resultType="com.reine.store.entity.User">
+        select *
+        from store.t_user
+        where username = #{username}
+    </select>
+</mapper>
