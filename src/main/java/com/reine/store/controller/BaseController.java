@@ -1,5 +1,6 @@
 package com.reine.store.controller;
 
+import com.reine.store.controller.ex.*;
 import com.reine.store.service.ex.*;
 import com.reine.store.util.JsonResult;
 import com.reine.store.vo.ErrorCode;
@@ -26,7 +27,7 @@ public class BaseController {
      *
      * @return
      */
-    @ExceptionHandler(ServiceException.class)
+    @ExceptionHandler({ServiceException.class, FileUploadException.class})
     public JsonResult<Void> handlerException(Throwable e) {
         if (e instanceof UsernameDuplicateException) {
             return new JsonResult<>(ErrorCode.USERNAME_DUPLICATE);
@@ -36,6 +37,18 @@ public class BaseController {
             return new JsonResult<>(ErrorCode.USER_NOT_FOUND);
         } else if (e instanceof PasswordNotMatchException) {
             return new JsonResult<>(ErrorCode.PASSWORD_NOT_MATCH);
+        } else if (e instanceof UpdateException) {
+            return new JsonResult<>(ErrorCode.UPDATE_ERROR);
+        } else if (e instanceof FileSizeException) {
+            return new JsonResult<>(ErrorCode.FILE_SIZE_ERROR);
+        } else if (e instanceof FileTypeException) {
+            return new JsonResult<>(ErrorCode.FILE_TYPE_ERROR);
+        } else if (e instanceof FileStateException) {
+            return new JsonResult<>(ErrorCode.FILE_STATE_ERROR);
+        } else if (e instanceof FileEmptyException) {
+            return new JsonResult<>(ErrorCode.FILE_EMPTY_ERROR);
+        } else if (e instanceof FileUploadIOException) {
+            return new JsonResult<>(ErrorCode.FILE_UPLOAD_IO_ERROR);
         }
         return null;
     }
@@ -52,10 +65,11 @@ public class BaseController {
 
     /**
      * 获取session中保存的用户username
+     *
      * @param session session对象
      * @return 当前登录用户的username
      */
-    protected final String getUsernameFromSession(HttpSession session){
+    protected final String getUsernameFromSession(HttpSession session) {
         return session.getAttribute("username").toString();
     }
 }

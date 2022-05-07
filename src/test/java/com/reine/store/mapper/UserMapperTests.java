@@ -1,10 +1,12 @@
 package com.reine.store.mapper;
 
 import com.reine.store.entity.User;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 
 /**
  * SpringBootTest注解 标注当前类为测试类。项目打包时不会包含
@@ -12,6 +14,7 @@ import javax.annotation.Resource;
  * @author reine
  * @since 2022/5/6 15:52
  */
+@Slf4j
 @SpringBootTest
 public class UserMapperTests {
 
@@ -31,12 +34,49 @@ public class UserMapperTests {
         user.setUsername("张三");
         user.setPassword("123456");
         Integer rows = userMapper.insert(user);
-        System.out.println(rows);
+        log.info("rows---{}",rows);
     }
 
     @Test
     void findByUsername() {
         User user = userMapper.findByUsername("张三");
-        System.out.println(user);
+        log.info("user---{}",user);
+    }
+
+    @Test
+    void updatePasswordByUid() {
+        User user = new User();
+        user.setUid(12);
+        user.setPassword("12345");
+        user.setModifiedUser("系统管理员");
+        user.setModifiedTime(LocalDateTime.now());
+        userMapper.updateByUid(user);
+    }
+
+    @Test
+    void updateInfoByUid() {
+        User user = new User();
+        user.setUid(12);
+        user.setPhone("13644444444");
+        user.setEmail("111@qq.cn");
+        user.setGender(1);
+        user.setModifiedUser("系统管理员");
+        user.setModifiedTime(LocalDateTime.now());
+        userMapper.updateByUid(user);
+    }
+
+    @Test
+    void updateAvatarByUid() {
+        User user = new User();
+        user.setUid(12);
+        user.setAvatar("/images/avatar.jpg");
+        user.setModifiedUser("系统管理员");
+        user.setModifiedTime(LocalDateTime.now());
+        userMapper.updateByUid(user);
+    }
+
+    @Test
+    void findByUid() {
+        System.out.println(userMapper.findByUid(6));
     }
 }

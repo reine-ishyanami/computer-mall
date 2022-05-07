@@ -3,10 +3,7 @@ package com.reine.store.service.impl;
 import com.reine.store.entity.User;
 import com.reine.store.mapper.UserMapper;
 import com.reine.store.service.IUserService;
-import com.reine.store.service.ex.InsertException;
-import com.reine.store.service.ex.UserNotFoundException;
-import com.reine.store.service.ex.UsernameDuplicateException;
-import com.reine.store.service.ex.PasswordNotMatchException;
+import com.reine.store.service.ex.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
@@ -91,6 +88,103 @@ public class UserServiceImpl implements IUserService {
         result.setAvatar(user.getAvatar());
 
         return result;
+    }
+
+    /**
+     * 修改密码
+     *
+     * @param uid         用户id
+     * @param username    用户名
+     * @param oldPassword 用户旧密码
+     * @param newPassword 用户新密码
+     */
+    @Override
+    public void updatePassword(Integer uid, String username, String oldPassword, String newPassword) {
+        User result = userMapper.findByUid(uid);
+        if (result == null || result.getIsDeleted() == 1) {
+            throw new UserNotFoundException("用户不存在");
+        }
+        // 密码比较
+        if (!getMD5Password(oldPassword, result.getSalt()).equals(result.getPassword())) {
+            throw new PasswordNotMatchException("密码错误");
+        }
+        // 将新密码设置到数据库中
+        String newMd5Password = getMD5Password(newPassword, result.getSalt());
+        User user = new User();
+        user.setPassword(newMd5Password);
+        user.setModifiedUser(username);
+        user.setModifiedTime(LocalDateTime.now());
+        Integer rows = userMapper.updateByUid(user);
+        if (rows != 1) {
+            throw new UpdateException("更新数据异常");
+        }
+    }
+
+    /**
+     * 获取用户数据
+     *
+     * @param uid 用户uid
+     * @return 用户数据
+     */
+    @Override
+    public User getUserInfoByUid(Integer uid) {
+        User result = userMapper.findByUid(uid);
+        if (result == null || result.getIsDeleted() == 1) {
+            throw new UserNotFoundException("用户不存在");
+        }
+        User user = new User();
+        user.setUsername(result.getUsername());
+        user.setPhone(result.getPhone());
+        user.setEmail(result.getEmail());
+        user.setGender(result.getGender());
+        return user;
+    }
+
+    /**
+     * 更新用户信息
+     *
+     * @param uid      用户uid
+     * @param username 用户名
+     * @param user     用户信息
+     */
+    @Override
+    public void updateInfo(Integer uid, String username, User user) {
+        User result = userMapper.findByUid(uid);
+        if (result == null || result.getIsDeleted() == 1) {
+            throw new UserNotFoundException("用户不存在");
+        }
+        user.setUid(uid);
+        user.setModifiedUser(username);
+        user.setModifiedTime(LocalDateTime.now());
+        Integer rows = userMapper.updateByUid(user);
+        if (rows != 1) {
+            throw new UpdateException("更新数据异常");
+        }
+    }
+
+    /**
+     * 更新用户头像
+     *
+     * @param uid      用户id
+     * @param username 更新人
+     * @param avatar   用户头像地址
+     */
+    @Override
+    public void updateAvatar(Integer uid, String username, String avatar) {
+        // 查询当前的用户数据是否存在
+        User result = userMapper.findByUid(uid);
+        if (result == null || result.getIsDeleted() == 1) {
+            throw new UserNotFoundException("用户不存在");
+        }
+        User user = new User();
+        user.setUid(uid);
+        user.setAvatar(avatar);
+        user.setModifiedUser(username);
+        user.setModifiedTime(LocalDateTime.now());
+        Integer rows = userMapper.updateByUid(user);
+        if (rows != 1) {
+            throw new UpdateException("更新数据异常");
+        }
     }
 
     /**

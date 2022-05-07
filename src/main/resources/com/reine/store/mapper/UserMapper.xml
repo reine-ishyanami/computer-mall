@@ -13,9 +13,44 @@
                 #{createdUser}, #{createdTime},
                 #{modifiedUser}, #{modifiedTime})
     </insert>
+    <update id="updateByUid">
+        update store.t_user
+        <set>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="gender != null">
+                gender =#{gender},
+            </if>
+            <if test="avatar != null">
+                avatar =#{avatar},
+            </if>
+            <if test="modifiedUser != null">
+                modified_user = #{modifiedUser},
+            </if>
+            <if test="modifiedTime != null">
+                modified_time = #{modifiedTime}
+            </if>
+        </set>
+        where uid = #{uid}
+    </update>
     <select id="findByUsername" resultType="com.reine.store.entity.User">
         select *
         from store.t_user
         where username = #{username}
+    </select>
+    <select id="findByUid" resultType="com.reine.store.entity.User">
+        select *
+        from store.t_user
+        where uid = #{uid}
     </select>
 </mapper>

@@ -24,7 +24,7 @@
 <body>
 <!--头部-->
 <header class="header">
-    <img src="../images/index/stumalllogo.png" alt=""/>
+    <a href="index.html"><img src="../images/index/stumalllogo.png" alt=""/></a>
     <span class="pull-right"><small>欢迎访问</small><b>电脑商城</b></span>
 </header>
 <!--主体-->
@@ -143,7 +143,6 @@
 <script type="text/javascript">
     // 监听按钮是否被点击
     $("#btn-reg").click(() => {
-        let username = $("#username").val()
         let password = $("#password").val()
         let password2 = $("#password2").val()
         if (password !== password2) {
