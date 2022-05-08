@@ -2,6 +2,7 @@ package com.reine.store.service;
 
 import com.reine.store.entity.User;
 import com.reine.store.service.ex.ServiceException;
+import com.reine.store.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * 用户测试类
  *
  * @author reine
- * @since 2022/5/6 16:47
+ * 2022/5/6 16:47
  */
 @Slf4j
 @SpringBootTest
@@ -30,15 +31,15 @@ public class UserServiceTests {
             log.info("OK");
         } catch (ServiceException e) {
             e.printStackTrace();
-            log.error("errorMessage---{}",e.getMessage());
+            log.error("errorMessage---{}", e.getMessage());
         }
 
     }
 
     @Test
     void login() {
-        User user = userService.login("admin", "123456");
-        log.info("user---{}",user);
+        UserVo user = userService.login("admin", "111111");
+        log.info("user---{}", user);
     }
 
     @Test

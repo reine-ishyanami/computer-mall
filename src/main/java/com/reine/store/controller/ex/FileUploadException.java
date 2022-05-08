@@ -2,10 +2,11 @@ package com.reine.store.controller.ex;
 
 /**
  * w文件上传相关异常基类
+ *
  * @author reine
- * @since 2022/5/7 14:35
+ * 2022/5/7 14:35
  */
-public class FileUploadException extends RuntimeException{
+public class FileUploadException extends RuntimeException {
     public FileUploadException() {
         super();
     }

@@ -2,10 +2,11 @@ package com.reine.store.service.ex;
 
 /**
  * 用户名重复异常
+ *
  * @author reine
- * @since 2022/5/6 16:27
+ * 2022/5/6 16:27
  */
-public class UsernameDuplicateException extends ServiceException{
+public class UsernameDuplicateException extends ServiceException {
     public UsernameDuplicateException() {
         super();
     }

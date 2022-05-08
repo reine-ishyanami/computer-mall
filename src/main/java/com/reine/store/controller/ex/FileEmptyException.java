@@ -2,10 +2,11 @@ package com.reine.store.controller.ex;
 
 /**
  * 文件为空异常
+ *
  * @author reine
- * @since 2022/5/7 14:36
+ * 2022/5/7 14:36
  */
-public class FileEmptyException extends FileUploadException{
+public class FileEmptyException extends FileUploadException {
     public FileEmptyException() {
         super();
     }

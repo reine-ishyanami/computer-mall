@@ -1,15 +1,13 @@
-package com.reine.store.entity;
+package com.reine.store.vo;
 
 import lombok.Data;
 
 /**
- * 用户实体类
- *
  * @author reine
- * 2022/5/6 14:35
+ * 2022/5/8 12:01
  */
 @Data
-public class User extends BaseEntity {
+public class UserVo {
 
     /**
      * 用户id
@@ -20,16 +18,6 @@ public class User extends BaseEntity {
      * 用户名
      */
     private String username;
-
-    /**
-     * 用户加密密码
-     */
-    private String password;
-
-    /**
-     * 盐值
-     */
-    private String salt;
 
     /**
      * 用户手机号
@@ -50,10 +38,5 @@ public class User extends BaseEntity {
      * 用户头像
      */
     private String avatar;
-
-    /**
-     * 删除标志位
-     */
-    private Integer isDeleted;
 
 }

@@ -2,10 +2,11 @@ package com.reine.store.service.ex;
 
 /**
  * 密码错误异常
+ *
  * @author reine
- * @since 2022/5/6 19:52
+ * 2022/5/6 19:52
  */
-public class PasswordNotMatchException extends ServiceException{
+public class PasswordNotMatchException extends ServiceException {
     public PasswordNotMatchException() {
         super();
     }

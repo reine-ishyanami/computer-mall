@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
  * 实体类的基类
  *
  * @author reine
- * @since 2022/5/6 14:25
+ * 2022/5/6 14:25
  */
 @Data
 public class BaseEntity implements Serializable {
@@ -34,6 +34,5 @@ public class BaseEntity implements Serializable {
      * 修改时间
      */
     private LocalDateTime modifiedTime;
-
 
 }

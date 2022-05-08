@@ -1,24 +1,22 @@
 package com.reine.store.mapper;
 
 import com.reine.store.entity.User;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.annotation.Resource;
 import java.time.LocalDateTime;
 
 /**
  * SpringBootTest注解 标注当前类为测试类。项目打包时不会包含
  *
  * @author reine
- * @since 2022/5/6 15:52
+ * 2022/5/6 15:52
  */
-@Slf4j
 @SpringBootTest
 public class UserMapperTests {
 
-    @Resource
+    @Autowired
     private UserMapper userMapper;
 
     /**
@@ -34,13 +32,13 @@ public class UserMapperTests {
         user.setUsername("张三");
         user.setPassword("123456");
         Integer rows = userMapper.insert(user);
-        log.info("rows---{}",rows);
+        System.out.println(rows);
     }
 
     @Test
     void findByUsername() {
         User user = userMapper.findByUsername("张三");
-        log.info("user---{}",user);
+        System.out.println(user);
     }
 
     @Test

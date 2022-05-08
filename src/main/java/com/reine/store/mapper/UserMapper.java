@@ -6,7 +6,7 @@ import com.reine.store.entity.User;
  * 用户模块持久层接口
  *
  * @author reine
- * @since 2022/5/6 14:59
+ * 2022/5/6 14:59
  */
 public interface UserMapper {
     /**
@@ -27,6 +27,7 @@ public interface UserMapper {
 
     /**
      * 根据用户uid修改用户信息
+     *
      * @param user 新数据
      * @return 受影响的行数
      */

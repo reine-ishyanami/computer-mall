@@ -2,10 +2,11 @@ package com.reine.store.controller.ex;
 
 /**
  * 文件读写异常
+ *
  * @author reine
- * @since 2022/5/7 14:38
+ * 2022/5/7 14:38
  */
-public class FileUploadIOException extends FileUploadException{
+public class FileUploadIOException extends FileUploadException {
     public FileUploadIOException() {
         super();
     }

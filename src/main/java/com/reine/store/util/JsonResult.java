@@ -8,8 +8,9 @@ import java.io.Serializable;
 
 /**
  * 前端返回对象
+ *
  * @author reine
- * @since 2022/5/6 17:16
+ * 2022/5/6 17:16
  */
 @Data
 @NoArgsConstructor
@@ -36,7 +37,7 @@ public class JsonResult<E> implements Serializable {
         this.message = e.getMessage();
     }
 
-    public JsonResult(ErrorCode e){
+    public JsonResult(ErrorCode e) {
         this.state = e.getCode();
         this.message = e.getMassage();
     }

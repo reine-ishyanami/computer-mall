@@ -2,10 +2,11 @@ package com.reine.store.controller.ex;
 
 /**
  * 文件过大异常
+ *
  * @author reine
- * @since 2022/5/7 14:36
+ * 2022/5/7 14:36
  */
-public class FileSizeException extends FileUploadException{
+public class FileSizeException extends FileUploadException {
     public FileSizeException() {
         super();
     }

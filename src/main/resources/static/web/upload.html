@@ -266,7 +266,6 @@
             dataType: "JSON",
             success(result) {
                 if (result.state === 200) {
-                    alert("上传头像成功")
                     $("#img-avatar").attr("src", result.data)
                     $.cookie("avatar", result.data, {expires: 7})
                 } else {

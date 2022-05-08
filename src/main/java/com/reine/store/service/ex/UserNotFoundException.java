@@ -2,10 +2,11 @@ package com.reine.store.service.ex;
 
 /**
  * 用户未注册异常
+ *
  * @author reine
- * @since 2022/5/6 19:49
+ * 2022/5/6 19:49
  */
-public class UserNotFoundException extends ServiceException{
+public class UserNotFoundException extends ServiceException {
     public UserNotFoundException() {
         super();
     }

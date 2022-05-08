@@ -2,10 +2,11 @@ package com.reine.store.controller.ex;
 
 /**
  * 文件类型异常
+ *
  * @author reine
- * @since 2022/5/7 14:37
+ * 2022/5/7 14:37
  */
-public class FileTypeException extends FileUploadException{
+public class FileTypeException extends FileUploadException {
     public FileTypeException() {
         super();
     }

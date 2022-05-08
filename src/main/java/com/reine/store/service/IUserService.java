@@ -1,12 +1,13 @@
 package com.reine.store.service;
 
 import com.reine.store.entity.User;
+import com.reine.store.vo.UserVo;
 
 /**
  * 用户模块业务层接口
  *
  * @author reine
- * @since 2022/5/6 16:31
+ * 2022/5/6 16:31
  */
 public interface IUserService {
     /**
@@ -23,7 +24,7 @@ public interface IUserService {
      * @param password 密码
      * @return 用户数据
      */
-    User login(String username, String password);
+    UserVo login(String username, String password);
 
     /**
      * 修改密码
@@ -37,25 +38,28 @@ public interface IUserService {
 
     /**
      * 获取用户数据
+     *
      * @param uid 用户uid
      * @return 用户数据
      */
-    User getUserInfoByUid(Integer uid);
+    UserVo getUserInfoByUid(Integer uid);
 
     /**
      * 更新用户信息
-     * @param uid 用户uid
+     *
+     * @param uid      用户uid
      * @param username 更新人
-     * @param user 用户信息
+     * @param user     用户信息
      */
     void updateInfo(Integer uid, String username, User user);
 
     /**
      * 更新用户头像
-     * @param uid 用户id
+     *
+     * @param uid      用户id
      * @param username 更新人
-     * @param avatar 用户头像地址
+     * @param avatar   用户头像地址
      */
-    void updateAvatar(Integer uid,String username,String avatar);
+    void updateAvatar(Integer uid, String username, String avatar);
 
 }

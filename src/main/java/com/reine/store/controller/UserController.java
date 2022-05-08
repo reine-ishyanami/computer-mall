@@ -4,6 +4,7 @@ import com.reine.store.controller.ex.*;
 import com.reine.store.entity.User;
 import com.reine.store.service.IUserService;
 import com.reine.store.util.JsonResult;
+import com.reine.store.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +24,7 @@ import java.util.UUID;
  * 用户控制器
  *
  * @author reine
- * @since 2022/5/6 17:24
+ * 2022/5/6 17:24
  */
 @RestController
 @RequestMapping("user")
@@ -60,8 +61,8 @@ public class UserController extends BaseController {
      * @return 返回信息
      */
     @RequestMapping("login")
-    public JsonResult<User> login(String username, String password, HttpSession session) {
-        User user = userService.login(username, password);
+    public JsonResult<UserVo> login(String username, String password, HttpSession session) {
+        UserVo user = userService.login(username, password);
         session.setAttribute("uid", user.getUid());
         session.setAttribute("username", user.getUsername());
         log.info("uid--{}", getUidFromSession(session));
@@ -92,8 +93,8 @@ public class UserController extends BaseController {
      * @return 返回信息
      */
     @RequestMapping("get_by_uid")
-    public JsonResult<User> getByUid(HttpSession session) {
-        User user = userService.getUserInfoByUid(getUidFromSession(session));
+    public JsonResult<UserVo> getByUid(HttpSession session) {
+        UserVo user = userService.getUserInfoByUid(getUidFromSession(session));
         return new JsonResult<>(OK, user);
     }
 
@@ -118,7 +119,7 @@ public class UserController extends BaseController {
      *
      * @param session session对象
      * @param file    头像图片
-     * @return
+     * @return 头像地址
      */
     @RequestMapping("change_avatar")
     public JsonResult<String> changeAvatar(HttpSession session, MultipartFile file) throws FileNotFoundException {
@@ -133,7 +134,7 @@ public class UserController extends BaseController {
             throw new FileTypeException("文件类型不支持");
         }
         // 上传的文件路径 /upload/file.png
-        String parent = ResourceUtils.getURL("classpath:static").getPath()+"/upload";
+        String parent = ResourceUtils.getURL("classpath:static").getPath() + "/upload";
         // File对象指向这个路径，File是否存在
         File dir = new File(parent);
         if (!dir.exists()) {

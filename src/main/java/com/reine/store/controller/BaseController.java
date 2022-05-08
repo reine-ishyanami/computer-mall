@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
  * TODO 后续可将此类改为AOP
  *
  * @author reine
- * @since 2022/5/6 17:38
+ * 2022/5/6 17:38
  */
 public class BaseController {
     /**
@@ -25,7 +25,7 @@ public class BaseController {
     /**
      * 请求处理方法，方法返回值需要传递给前端
      *
-     * @return
+     * @return 错误信息
      */
     @ExceptionHandler({ServiceException.class, FileUploadException.class})
     public JsonResult<Void> handlerException(Throwable e) {
@@ -39,6 +39,14 @@ public class BaseController {
             return new JsonResult<>(ErrorCode.PASSWORD_NOT_MATCH);
         } else if (e instanceof UpdateException) {
             return new JsonResult<>(ErrorCode.UPDATE_ERROR);
+        } else if (e instanceof DeleteException) {
+            return new JsonResult<>(ErrorCode.DELETE_ERROR);
+        } else if (e instanceof AddressCountLimitException) {
+            return new JsonResult<>(ErrorCode.ADDRESS_COUNT_LIMIT);
+        }  else if (e instanceof AddressNotFoundException) {
+            return new JsonResult<>(ErrorCode.ADDRESS_NOT_FOUND);
+        } else if (e instanceof AccessDeniedException) {
+            return new JsonResult<>(ErrorCode.ACCESS_DENIED);
         } else if (e instanceof FileSizeException) {
             return new JsonResult<>(ErrorCode.FILE_SIZE_ERROR);
         } else if (e instanceof FileTypeException) {

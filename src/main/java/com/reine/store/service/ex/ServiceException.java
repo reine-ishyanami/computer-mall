@@ -4,7 +4,7 @@ package com.reine.store.service.ex;
  * 业务层异常基类
  *
  * @author reine
- * @since 2022/5/6 16:22
+ * 2022/5/6 16:22
  */
 public class ServiceException extends RuntimeException {
     public ServiceException() {

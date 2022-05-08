@@ -4,21 +4,23 @@ import com.reine.store.entity.User;
 import com.reine.store.mapper.UserMapper;
 import com.reine.store.service.IUserService;
 import com.reine.store.service.ex.*;
+import com.reine.store.vo.UserVo;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
-import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
  * @author reine
- * @since 2022/5/6 16:33
+ * 2022/5/6 16:33
  */
 @Service
 public class UserServiceImpl implements IUserService {
 
-    @Resource
+    @Autowired
     private UserMapper userMapper;
 
     /**
@@ -68,26 +70,23 @@ public class UserServiceImpl implements IUserService {
      * @return 用户数据
      */
     @Override
-    public User login(String username, String password) {
-        User user = userMapper.findByUsername(username);
-        if (user == null) {
+    public UserVo login(String username, String password) {
+        User result = userMapper.findByUsername(username);
+        if (result == null) {
             throw new UserNotFoundException("用户未注册，请先注册");
         }
-        String salt = user.getSalt();
-        String passwordInDb = user.getPassword();
-        if (user.getIsDeleted() == 1) {
+        String salt = result.getSalt();
+        String passwordInDb = result.getPassword();
+        if (result.getIsDeleted() == 1) {
             throw new UserNotFoundException("用户未注册，请先注册");
         }
         // 比较密码
         if (!getMD5Password(password, salt).equals(passwordInDb)) {
             throw new PasswordNotMatchException("用户密码错误");
         }
-        User result = new User();
-        result.setUid(user.getUid());
-        result.setUsername(user.getUsername());
-        result.setAvatar(user.getAvatar());
-
-        return result;
+        UserVo user = new UserVo();
+        BeanUtils.copyProperties(result, user, "email", "phone", "gender");
+        return user;
     }
 
     /**
@@ -111,6 +110,7 @@ public class UserServiceImpl implements IUserService {
         // 将新密码设置到数据库中
         String newMd5Password = getMD5Password(newPassword, result.getSalt());
         User user = new User();
+        user.setUid(uid);
         user.setPassword(newMd5Password);
         user.setModifiedUser(username);
         user.setModifiedTime(LocalDateTime.now());
@@ -127,16 +127,13 @@ public class UserServiceImpl implements IUserService {
      * @return 用户数据
      */
     @Override
-    public User getUserInfoByUid(Integer uid) {
+    public UserVo getUserInfoByUid(Integer uid) {
         User result = userMapper.findByUid(uid);
         if (result == null || result.getIsDeleted() == 1) {
             throw new UserNotFoundException("用户不存在");
         }
-        User user = new User();
-        user.setUsername(result.getUsername());
-        user.setPhone(result.getPhone());
-        user.setEmail(result.getEmail());
-        user.setGender(result.getGender());
+        UserVo user = new UserVo();
+        BeanUtils.copyProperties(result, user, "uid", "avatar");
         return user;
     }
 
@@ -190,8 +187,8 @@ public class UserServiceImpl implements IUserService {
     /**
      * 由密码和盐值生成新密码后进行md5加密
      *
-     * @param password
-     * @param salt
+     * @param password 密码
+     * @param salt     盐值
      */
     private String getMD5Password(String password, String salt) {
         // 密码加密

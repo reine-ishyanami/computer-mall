@@ -2,10 +2,11 @@ package com.reine.store.service.ex;
 
 /**
  * 插入数据库异常
+ *
  * @author reine
- * @since 2022/5/6 16:29
+ * 2022/5/6 16:29
  */
-public class InsertException extends ServiceException{
+public class InsertException extends ServiceException {
     public InsertException() {
         super();
     }
