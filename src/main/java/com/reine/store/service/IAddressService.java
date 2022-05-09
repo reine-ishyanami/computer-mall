@@ -29,32 +29,37 @@ public interface IAddressService {
 
     /**
      * 设置默认地址
-     * @param aid 地址id
-     * @param uid 用户id
+     *
+     * @param aid      地址id
+     * @param uid      用户id
      * @param username 用户名
      */
     void setDefault(Integer aid, Integer uid, String username);
 
     /**
      * 根据aid获取地址详细数据
+     *
      * @param aid 地址aid
+     * @param uid 用户uid
      * @return 地址详细数据
      */
-    Address getAddressDetail(Integer aid);
+    Address getAddressDetail(Integer aid, Integer uid);
 
     /**
      * 删除用户选中的地址
-     * @param aid 地址aid
-     * @param uid 用户uid
+     *
+     * @param aid      地址aid
+     * @param uid      用户uid
      * @param username 用户名
      */
     void delete(Integer aid, Integer uid, String username);
 
     /**
      * 编辑收货地址
-     * @param uid 用户uid
+     *
+     * @param uid      用户uid
      * @param username 用户名
-     * @param address 收货地址
+     * @param address  收货地址
      */
     void editAddress(Integer uid, String username, Address address);
 }

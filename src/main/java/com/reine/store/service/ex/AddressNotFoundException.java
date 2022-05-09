@@ -2,10 +2,11 @@ package com.reine.store.service.ex;
 
 /**
  * 地址未找到异常
+ *
  * @author reine
  * 2022/5/8 14:18
  */
-public class AddressNotFoundException extends ServiceException{
+public class AddressNotFoundException extends ServiceException {
     public AddressNotFoundException() {
         super();
     }

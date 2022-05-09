@@ -40,7 +40,8 @@ public interface ICartService {
 
     /**
      * 根据若干个购物车数据id查询详情的列表
-     * @param uid 当前登录的用户的id
+     *
+     * @param uid  当前登录的用户的id
      * @param cids 若干个购物车数据id
      * @return 匹配的购物车数据详情的列表
      */
@@ -48,6 +49,7 @@ public interface ICartService {
 
     /**
      * 根据商品cid删除商品
+     *
      * @param cid 购物车商品cid
      * @param uid 用户uid
      */
@@ -55,6 +57,7 @@ public interface ICartService {
 
     /**
      * 删除选中的商品
+     *
      * @param ids 选中的商品cid
      * @param uid 用户uid
      */

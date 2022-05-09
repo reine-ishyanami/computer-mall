@@ -4,7 +4,7 @@ package com.reine.store.service.ex;
  * @author reine
  * 2022/5/9 14:02
  */
-public class CartNotFoundException extends ServiceException{
+public class CartNotFoundException extends ServiceException {
     public CartNotFoundException() {
         super();
     }

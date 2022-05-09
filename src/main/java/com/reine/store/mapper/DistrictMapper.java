@@ -12,6 +12,7 @@ public interface DistrictMapper {
 
     /**
      * 根据父代号来查询区域信息
+     *
      * @param parent 父代号
      * @return 对应的区域列表
      */
@@ -19,6 +20,7 @@ public interface DistrictMapper {
 
     /**
      * 根据编号查询名称
+     *
      * @param code 编号
      * @return 名称
      */

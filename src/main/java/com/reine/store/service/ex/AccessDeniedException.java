@@ -2,10 +2,11 @@ package com.reine.store.service.ex;
 
 /**
  * 非法访问异常
+ *
  * @author reine
  * 2022/5/8 14:17
  */
-public class AccessDeniedException extends ServiceException{
+public class AccessDeniedException extends ServiceException {
     public AccessDeniedException() {
         super();
     }

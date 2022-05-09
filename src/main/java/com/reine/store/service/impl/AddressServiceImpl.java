@@ -116,8 +116,14 @@ public class AddressServiceImpl implements IAddressService {
      * @return 地址详细数据
      */
     @Override
-    public Address getAddressDetail(Integer aid) {
+    public Address getAddressDetail(Integer aid, Integer uid) {
         Address address = addressMapper.findByAid(aid);
+        if (address == null) {
+            throw new AddressNotFoundException("未找到地址");
+        }
+        if (!address.getUid().equals(uid)) {
+            throw new AccessDeniedException("非法访问");
+        }
         return address;
     }
 
@@ -188,8 +194,9 @@ public class AddressServiceImpl implements IAddressService {
 
     /**
      * 地址字段填充
-     * @param address 地址
-     * @param uid 用户uid
+     *
+     * @param address  地址
+     * @param uid      用户uid
      * @param username 用户名
      * @return 填充完成的地址
      */

@@ -34,6 +34,7 @@ public class ProductController extends BaseController {
 
     /**
      * 查询商品详情
+     *
      * @param id 商品id
      * @return 商品详情
      */

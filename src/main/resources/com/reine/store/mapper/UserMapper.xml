@@ -5,7 +5,7 @@
 <mapper namespace="com.reine.store.mapper.UserMapper">
 
     <!--    useGeneratedKeys开启字段自增，keyProperty自增的字段-->
-    <insert id="insert" parameterType="com.reine.store.entity.User">
+    <insert id="insert" parameterType="com.reine.store.entity.User" useGeneratedKeys="true" keyProperty="uid">
         insert into store.t_user(username, password, salt, phone, email, gender, avatar, is_deleted, created_user,
                                  created_time, modified_user, modified_time)
         values (#{username}, #{password}, #{salt}, #{phone},

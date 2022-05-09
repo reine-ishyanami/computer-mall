@@ -30,6 +30,7 @@ public interface AddressMapper {
 
     /**
      * 根据用户uid查询用户收货地址数据
+     *
      * @param uid 用户uid
      * @return 用户地址数据
      */
@@ -37,6 +38,7 @@ public interface AddressMapper {
 
     /**
      * 根据aid查询收货地址数据
+     *
      * @param aid 收货地址aid
      * @return 收货地址数据
      */
@@ -44,6 +46,7 @@ public interface AddressMapper {
 
     /**
      * 根据用户uid修改用户收货地址设置为非默认
+     *
      * @param uid 用户uid
      * @return 受影响的行数
      */
@@ -51,6 +54,7 @@ public interface AddressMapper {
 
     /**
      * 根据地址aid设置更新用户默认地址
+     *
      * @param address 地址
      * @return 受影响的行数
      */
@@ -58,6 +62,7 @@ public interface AddressMapper {
 
     /**
      * 根据aid删除地址
+     *
      * @param aid 地址aid
      * @return 受影响的行数
      */
@@ -65,6 +70,7 @@ public interface AddressMapper {
 
     /**
      * 根据用户uid查询最后一条被修改的地址
+     *
      * @param uid 用户uid
      * @return 最后一条修改的数据
      */

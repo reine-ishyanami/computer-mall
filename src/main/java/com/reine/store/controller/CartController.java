@@ -104,7 +104,8 @@ public class CartController extends BaseController {
 
     /**
      * 删除选中
-     * @param ids 选中的id
+     *
+     * @param ids     选中的id
      * @param session session对象
      * @return 返回信息
      */

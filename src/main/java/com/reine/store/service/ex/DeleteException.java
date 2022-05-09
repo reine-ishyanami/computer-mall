@@ -2,10 +2,11 @@ package com.reine.store.service.ex;
 
 /**
  * 删除异常
+ *
  * @author reine
  * 2022/5/8 17:08
  */
-public class DeleteException extends ServiceException{
+public class DeleteException extends ServiceException {
     public DeleteException() {
         super();
     }

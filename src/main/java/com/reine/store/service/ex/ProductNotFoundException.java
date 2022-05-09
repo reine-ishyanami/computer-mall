@@ -4,7 +4,7 @@ package com.reine.store.service.ex;
  * @author reine
  * 2022/5/9 9:01
  */
-public class ProductNotFoundException extends ServiceException{
+public class ProductNotFoundException extends ServiceException {
     public ProductNotFoundException() {
         super();
     }

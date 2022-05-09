@@ -263,7 +263,31 @@
     $(document).ready(function () {
         showCartList()
         showAddressList()
-    });
+    })
+
+    $("#btn-create-order").click(() => {
+        let aid = $("#address-list").val()
+        let cids = location.search.substr(1)
+        $.ajax({
+            url: "/orders/create",
+            data: "aid=" + aid + "&" + cids,
+            type: "GET",
+            dataType: "JSON",
+            success(result) {
+                if (result.state === 200) {
+                    alert("创建订单成功！");
+                    location.href = "payment.html"
+                    console.log(result.data);
+                } else {
+                    alert("创建订单失败！" + result.message);
+                }
+            },
+            error: function (xhr) {
+                alert("您的登录信息已经过期，请重新登录！HTTP响应码：" + xhr.status);
+                location.href = "login.html";
+            }
+        });
+    })
 
     // 展示购物车数据
     function showCartList() {
@@ -311,7 +335,7 @@
                 list.forEach(item => {
                     let opt = `<option value="${item.aid}">${item.name}&nbsp;&nbsp;&nbsp;&nbsp;
                             ${item.tag}&nbsp;&nbsp;&nbsp;&nbsp;
-                            ${item.province||""}${item.city||""}${item.area||""}${item.address}&nbsp;&nbsp;&nbsp;&nbsp;
+                            ${item.province || ""}${item.city || ""}${item.area || ""}${item.address}&nbsp;&nbsp;&nbsp;&nbsp;
                             ${item.phone}
                         </option>`
                     $("#address-list").append(opt)

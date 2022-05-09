@@ -85,14 +85,16 @@ public class AddressController extends BaseController {
      * @return 返回信息
      */
     @RequestMapping("detail")
-    public JsonResult<Address> getAddressDetail(Integer aid) {
-        Address address = addressService.getAddressDetail(aid);
+    public JsonResult<Address> getAddressDetail(Integer aid, HttpSession session) {
+        Integer uid = getUidFromSession(session);
+        Address address = addressService.getAddressDetail(aid, uid);
         return new JsonResult<>(OK, address);
     }
 
     /**
      * 删除地址
-     * @param aid 地址aid
+     *
+     * @param aid     地址aid
      * @param session session对象
      * @return 返回信息
      */

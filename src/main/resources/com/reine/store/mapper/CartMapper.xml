@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.reine.store.mapper.CartMapper">
 
-    <insert id="insert" parameterType="com.reine.store.entity.Cart">
+    <insert id="insert" parameterType="com.reine.store.entity.Cart" keyProperty="cid" useGeneratedKeys="true">
         insert into store.t_cart(uid, pid, price, num, created_user, created_time, modified_user, modified_time)
         VALUES (#{uid}, #{pid}, #{price}, #{num}, #{createdUser}, #{createdTime}, #{modifiedUser}, #{modifiedTime})
     </insert>
