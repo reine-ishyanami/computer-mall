@@ -1,6 +1,5 @@
-package com.reine.store.util;
+package com.reine.store.vo;
 
-import com.reine.store.vo.ErrorCode;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

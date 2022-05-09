@@ -1,6 +1,5 @@
 package com.reine.store.service;
 
-import com.reine.store.entity.District;
 import com.reine.store.vo.DistrictVo;
 
 import java.util.List;

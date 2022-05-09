@@ -25,7 +25,9 @@ public enum ErrorCode {
     FILE_TYPE_ERROR(4063, "文件类型错误"),
     FILE_STATE_ERROR(4064, "文件状态异常"),
     FILE_UPLOAD_IO_ERROR(4065, "文件读写异常"),
-    ACCESS_DENIED(4071, "非法访问");
+    ACCESS_DENIED(4071, "非法访问"),
+    PRODUCT_NOT_FOUND(4081,"商品不存在"),
+    CART_NOT_FOUND(4091,"购物车数据不存在");
 
     /**
      * 错误码

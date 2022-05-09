@@ -2,8 +2,8 @@ package com.reine.store.controller;
 
 import com.reine.store.controller.ex.*;
 import com.reine.store.service.ex.*;
-import com.reine.store.util.JsonResult;
 import com.reine.store.vo.ErrorCode;
+import com.reine.store.vo.JsonResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.servlet.http.HttpSession;
@@ -57,6 +57,10 @@ public class BaseController {
             return new JsonResult<>(ErrorCode.FILE_EMPTY_ERROR);
         } else if (e instanceof FileUploadIOException) {
             return new JsonResult<>(ErrorCode.FILE_UPLOAD_IO_ERROR);
+        } else if (e instanceof ProductNotFoundException) {
+            return new JsonResult<>(ErrorCode.PRODUCT_NOT_FOUND);
+        }else if (e instanceof CartNotFoundException) {
+            return new JsonResult<>(ErrorCode.CART_NOT_FOUND);
         }
         return null;
     }

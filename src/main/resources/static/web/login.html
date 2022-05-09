@@ -60,6 +60,13 @@
                     </div>
                 </div>
             </div>
+<!--            错误提示信息-->
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-6">
+                    <div id="info" style="color: red">
+                    </div>
+                </div>
+            </div>
             <!--提交按钮-->
             <div class="form-group">
                 <label class="col-md-3 control-label"></label>
@@ -158,7 +165,8 @@
                     // 保存头像到cookie
                     $.cookie("avatar", result.data.avatar, {expires: 7})
                 } else {
-                    alert(result.message)
+                    // alert(result.message)
+                    $("#info").text(result.message)
                 }
             },
             error(xhr) {

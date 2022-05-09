@@ -2,8 +2,8 @@ package com.reine.store.controller;
 
 import com.reine.store.entity.Address;
 import com.reine.store.service.IAddressService;
-import com.reine.store.util.JsonResult;
 import com.reine.store.vo.AddressVo;
+import com.reine.store.vo.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

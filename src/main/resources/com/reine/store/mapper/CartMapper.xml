@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.reine.store.mapper.CartMapper">
+
+    <insert id="insert" parameterType="com.reine.store.entity.Cart">
+        insert into store.t_cart(uid, pid, price, num, created_user, created_time, modified_user, modified_time)
+        VALUES (#{uid}, #{pid}, #{price}, #{num}, #{createdUser}, #{createdTime}, #{modifiedUser}, #{modifiedTime})
+    </insert>
+    <update id="updateCartByCid" parameterType="com.reine.store.entity.Cart">
+        update store.t_cart
+        <set>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="num != null">
+                num = #{num},
+            </if>
+            <if test="modifiedUser != null">
+                modified_user = #{modifiedUser},
+            </if>
+            <if test="modifiedTime != null">
+                modified_time = #{modifiedTime}
+            </if>
+        </set>
+        where cid = #{cid}
+    </update>
+    <delete id="deleteByCid" parameterType="int">
+        delete
+        from store.t_cart
+        where cid = #{cid}
+    </delete>
+    <delete id="deleteCart" parameterType="int">
+        delete
+        from store.t_cart
+        where cid = #{cid}
+    </delete>
+    <select id="findByCUidAndPid" resultType="com.reine.store.entity.Cart">
+        select *
+        from store.t_cart
+        where uid = #{uid}
+          and pid = #{pid}
+    </select>
+    <select id="findVOByUid" resultType="com.reine.store.vo.CartVo" parameterType="int">
+        SELECT cid,
+               uid,
+               pid,
+               t_cart.price,
+               t_cart.num,
+               t_product.title,
+               t_product.price AS realPrice,
+               t_product.image
+        FROM store.t_cart
+                 LEFT JOIN store.t_product ON t_cart.pid = t_product.id
+        WHERE uid = #{uid}
+        ORDER BY t_cart.created_time DESC
+    </select>
+    <select id="findByCid" resultType="com.reine.store.entity.Cart" parameterType="int">
+        select *
+        from store.t_cart
+        where cid = #{cid}
+    </select>
+    <select id="findVOByCids" resultType="com.reine.store.vo.CartVo">
+        SELECT cid, uid, pid, t_cart.price, t_cart.num, t_product.title, t_product.price AS realPrice, t_product.image
+        FROM
+        store.t_cart
+        LEFT JOIN store.t_product ON t_cart.pid = t_product.id
+        WHERE
+        cid IN (
+        <foreach collection="array" item="cid" separator=",">
+            #{cid}
+        </foreach>
+        )
+        ORDER BY
+        t_cart.created_time DESC
+    </select>
+    <select id="findVOByCid" resultType="com.reine.store.entity.Cart" parameterType="int">
+        select *
+        from store.t_cart
+        where cid = ${cid}
+    </select>
+
+
+</mapper>

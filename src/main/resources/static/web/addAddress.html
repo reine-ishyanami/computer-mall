@@ -297,12 +297,13 @@
 <!--页脚结束-->
 </body>
 
+<script type="text/javascript" src="../js/jquery-getUrlParam.js"></script>
 <script type="text/javascript">
     let defaultOption = `<option value="0">-----请选择-----</option>`
     let addressInfo = {}
     // 页面初始化事件
     $(document).ready(() => {
-        let aid = getQueryString("aid")
+        let aid = $.getUrlParam("aid")
         console.log(aid)
         showProvinceList()
         // 其他两个控件设置“请选择”值
@@ -501,15 +502,6 @@
         location.href = window.location
     })
 
-    // 获取地址栏中的参数
-    function getQueryString(name) {
-        let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i")
-        let r = window.location.search.substr(1).match(reg)
-        if (r != null) {
-            return decodeURIComponent(r[2])
-        }
-        return null
-    }
 </script>
 
 </html>

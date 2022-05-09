@@ -3,7 +3,7 @@ package com.reine.store.controller;
 import com.reine.store.controller.ex.*;
 import com.reine.store.entity.User;
 import com.reine.store.service.IUserService;
-import com.reine.store.util.JsonResult;
+import com.reine.store.vo.JsonResult;
 import com.reine.store.vo.UserVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

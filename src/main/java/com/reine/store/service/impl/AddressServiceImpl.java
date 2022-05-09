@@ -186,6 +186,13 @@ public class AddressServiceImpl implements IAddressService {
         }
     }
 
+    /**
+     * 地址字段填充
+     * @param address 地址
+     * @param uid 用户uid
+     * @param username 用户名
+     * @return 填充完成的地址
+     */
     private Address fillProperties(Address address, Integer uid, String username) {
         Integer count = addressMapper.countByUid(uid);
         // 补全省市区数据
@@ -200,8 +207,9 @@ public class AddressServiceImpl implements IAddressService {
         address.setIsDefault(isDefault);
         address.setCreatedUser(username);
         address.setModifiedUser(username);
-        address.setCreatedTime(LocalDateTime.now());
-        address.setModifiedTime(LocalDateTime.now());
+        LocalDateTime now = LocalDateTime.now();
+        address.setCreatedTime(now);
+        address.setModifiedTime(now);
         return address;
     }
 }
